@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Curso de estética automotiva profissional." />
+  <meta name="keywords" content="estética automotiva, profissional, técnica, persuasão, infoproduto" />
+  <meta name="author" content="O Segredo do Detalhamento" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://osegredododetalhamento.com.br/" />
+  <meta property="og:title" content="O Segredo do Detalhamento | Guia de Estética Automotiva Profissional" />
+  <meta property="og:description" content="Curso de estética automotiva profissional." />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://osegredododetalhamento.com.br/" />
+  <meta property="twitter:title" content="O Segredo do Detalhamento | Guia de Estética Automotiva Profissional" />
+  <meta property="twitter:description" content="Curso de estética automotiva profissional." />
+  <meta property="twitter:image" content="assets/images/og-image.jpg" />
+
+  <title>O Segredo do Detalhamento | Guia de Estética Automotiva Profissional</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/icons/icon.ico" />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#ffde59',
+              dark: '#E55A2B',
+              light: '#FF8C5A',
+            },
+            secondary: {
+              DEFAULT: '#004E89',
+              dark: '#003D6B',
+            },
+            accent: '#FFD23F',
+            text: {
+              DEFAULT: '#333333',
+              light: '#666666',
+              lighter: '#999999',
+            },
+            bg: {
+              DEFAULT: '#FFFFFF',
+              light: '#F8F9FA',
+              dark: '#1A1A1A',
+            },
+            success: '#28A745',
+            error: '#DC3545',
+            warning: '#FFC107',
+            info: '#17A2B8',
+          },
+          fontFamily: {
+            primary: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            heading: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+          fontSize: {
+            xs: '0.75rem',    // 12px
+            sm: '0.875rem',   // 14px
+            base: '1rem',     // 16px
+            lg: '1.125rem',   // 18px
+            xl: '1.25rem',    // 20px
+            '2xl': '1.5rem',  // 24px
+            '3xl': '1.875rem', // 30px
+            '4xl': '2.25rem',  // 36px
+            '5xl': '3rem',     // 48px
+            '6xl': '3.75rem',  // 60px
+          },
+          spacing: {
+            xs: '0.25rem',   // 4px
+            sm: '0.5rem',     // 8px
+            md: '1rem',      // 16px
+            lg: '1.5rem',    // 24px
+            xl: '2rem',      // 32px
+            '2xl': '3rem',   // 48px
+            '3xl': '4rem',   // 64px
+            '4xl': '6rem',   // 96px
+            '5xl': '8rem',   // 128px
+          },
+          borderRadius: {
+            none: '0',
+            sm: '0.25rem',   // 4px
+            md: '0.5rem',    // 8px
+            lg: '0.75rem',   // 12px
+            xl: '1rem',      // 16px
+            '2xl': '1.5rem', // 24px
+          },
+          boxShadow: {
+            sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+            md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          },
+          zIndex: {
+            dropdown: '1000',
+            sticky: '1020',
+            fixed: '1030',
+            'modal-backdrop': '1040',
+            modal: '1050',
+            popover: '1060',
+            tooltip: '1070',
+          },
+          maxWidth: {
+            container: '1200px',
+            'container-wide': '1400px',
+            'container-narrow': '900px',
+          },
+          transitionDuration: {
+            fast: '150ms',
+            base: '300ms',
+            slow: '500ms',
+          },
+          screens: {
+            'xs': '480px',
+            'sm': '576px',
+            'md': '768px',
+            'lg': '992px',
+            'xl': '1200px',
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Custom CSS for animations and special cases -->
+  <link rel="stylesheet" href="styles/input.css" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+  <!-- Form Dialog -->
+  <div id="form-dialog-container"></div>
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- Hero Section -->
+  <div id="hero-container"></div>
+
+  <!-- About Product Section -->
+  <div id="about-product-container"></div>
+
+  <!-- Why It Works Section -->
+  <div id="why-it-works-container"></div>
+
+  <!-- Bonus Section -->
+  <div id="bonus-container"></div>
+
+  <!-- Course Content Section -->
+  <div id="faq-container"></div>
+
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- JavaScript Libraries -->
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Main Scripts -->
+  <script src="scripts/form-dialog.js"></script>
+  <script src="scripts/primary-btn.js"></script>
+  <script src="scripts/legal-links.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/components.js"></script>
+  <script src="scripts/animations.js"></script>
+</body>
+
+</html>

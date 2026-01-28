@@ -1,0 +1,78 @@
+<!-- Form Dialog Component -->
+<div id="formDialog" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
+  <div class="bg-white rounded-lg shadow-2xl w-full max-w-md mx-auto transform transition-all">
+    <!-- Header do Dialog -->
+    <div class="flex flex-row justify-between items-start p-6 border-b border-gray-200 relative">
+      <div class="flex flex-col">
+        <h2 class="text-2xl font-bold text-text">Receba seu checklist!</h2>
+        <p class="text-sm text-text">Insira as informações abaixo para enviarmos seu checklist.
+        </p>
+      </div>
+      <button id="closeDialogBtn" class="text-gray-500 hover:text-gray-700 transition-colors" aria-label="Fechar">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Corpo do Dialog com Formulário -->
+    <form id="leadForm" class="p-6 space-y-4">
+      <!-- Campo Nome Completo -->
+      <div>
+        <label for="fullName" class="block text-sm font-medium text-text mb-2">
+          Nome Completo <span class="text-red-500">*</span>
+        </label>
+        <input type="text" id="fullName" name="fullName" required
+          class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+          placeholder="Digite seu nome completo">
+        <p class="text-red-500 text-xs mt-1 hidden" id="fullNameError">Por favor, insira seu nome completo</p>
+      </div>
+
+      <!-- Checkboxes de preferência -->
+      <div class="space-y-3">
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input type="checkbox" id="receiveEmail" name="receiveEmail"
+            class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary focus:ring-2">
+          <span class="text-sm font-medium text-text">Quero receber por e-mail</span>
+        </label>
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input type="checkbox" id="receiveWhatsapp" name="receiveWhatsapp"
+            class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary focus:ring-2">
+          <span class="text-sm font-medium text-text">Quero receber no Whatsapp</span>
+        </label>
+      </div>
+
+      <!-- Campo Email (oculto inicialmente) -->
+      <div id="emailField" class="hidden">
+        <label for="email" class="block text-sm font-medium text-text mb-2">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <input type="email" id="email" name="email"
+          class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+          placeholder="seu@email.com">
+        <p class="text-red-500 text-xs mt-1 hidden" id="emailError">Por favor, insira um email válido com @</p>
+        <p class="text-xs text-red-500/75 mt-2">Confirme cuidadosamente o e-mail para evitar erros de envio.</p>
+      </div>
+
+      <!-- Campo Telefone (oculto inicialmente) -->
+      <div id="phoneField" class="hidden">
+        <label for="phone" class="block text-sm font-medium text-text mb-2">
+          Telefone <span class="text-red-500">*</span>
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 font-medium">+55</span>
+          <input type="tel" id="phone" name="phone"
+            class="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+            placeholder="(00) 00000-0000" maxlength="15">
+        </div>
+        <p class="text-red-500 text-xs mt-1 hidden" id="phoneError">Por favor, insira um telefone válido</p>
+      </div>
+
+      <!-- Botão de Enviar -->
+      <button type="submit" id="submitDialogBtn" data-redirect-link="obrigado.html" data-redirect-target="_self"
+        class="w-full bg-primary text-white py-4 px-6 rounded-md font-bold text-lg transition-all duration-300 hover:bg-primary-dark hover:shadow-lg transform hover:-translate-y-1">
+        Receber PDF Gratuito
+      </button>
+    </form>
+  </div>
+</div>

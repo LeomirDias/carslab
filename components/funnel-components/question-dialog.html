@@ -1,0 +1,49 @@
+<!-- Question Dialog Component -->
+<div id="questionDialog"
+  class="fixed w-full h-full inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4 overflow-y-auto">
+  <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg mx-auto my-auto transform transition-all">
+    <!-- Header do Dialog -->
+    <div class="flex flex-row justify-between items-start p-4 sm:p-6 border-b border-gray-200 relative">
+      <div class="flex flex-col">
+        <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-text">Antes de baixar o checklist, uma pergunta rápida:
+        </h2>
+        <p class="text-xs sm:text-sm text-text mt-2">Qual dessas opções mais combina com você hoje?</p>
+      </div>
+    </div>
+
+    <!-- Corpo do Dialog com Formulário -->
+    <form id="questionForm" class="p-4 sm:p-6 space-y-4">
+      <!-- Opções de Radio Button -->
+      <div class="space-y-3 sm:space-y-4">
+        <label
+          class="flex items-start space-x-3 cursor-pointer p-3 sm:p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+          <input type="radio" id="userTypeHobby" name="userType" value="hobby" required
+            class="mt-1 w-4 h-4 sm:w-5 sm:h-5 text-primary border-gray-300 focus:ring-primary focus:ring-2 flex-shrink-0">
+          <span class="text-sm sm:text-base font-medium text-text flex-1">Quero cuidar melhor do meu carro</span>
+        </label>
+
+        <label
+          class="flex items-start space-x-3 cursor-pointer p-3 sm:p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+          <input type="radio" id="userTypeEmpreendedor" name="userType" value="empreendedor" required
+            class="mt-1 w-4 h-4 sm:w-5 sm:h-5 text-primary border-gray-300 focus:ring-primary focus:ring-2 flex-shrink-0">
+          <span class="text-sm sm:text-base font-medium text-text flex-1">Quero aprender para empreender com estética
+            automotiva</span>
+        </label>
+      </div>
+
+      <p class="text-red-500 text-xs mt-1 hidden" id="questionError">Por favor, selecione uma opção</p>
+
+      <!-- Botão de Enviar -->
+      <button type="submit" id="submitQuestionBtn"
+        class="w-full bg-primary text-[#272727] py-3 sm:py-4 px-4 sm:px-6 rounded-md font-bold text-base
+         sm:text-lg transition-all duration-300 hover:bg-[#272727] hover:text-primary hover:shadow-sm transform hover:-translate-y-1">
+        Enviar
+      </button>
+
+      <button id="closeQuestionDialogBtn" class="w-full text-[#272727] py-3 sm:py-4 px-4 sm:px-6 
+      font-bold text-base sm:text-lg transition-all duration-300 hover:text-primary transform hover:-translate-y-1">
+        Prefiro não responder
+      </button>
+    </form>
+  </div>
+</div>

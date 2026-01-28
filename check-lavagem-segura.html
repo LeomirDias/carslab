@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Baixe gratuitamente o Check de Lavagem Segura - Guia completo para cuidar da pintura do seu carro." />
+  <meta name="keywords" content="lavagem segura, estética automotiva, cuidado automotivo, PDF gratuito" />
+  <meta name="author" content="CarsLab" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://osegredododetalhamento.com.br/check-lavagem-segura.html" />
+  <meta property="og:title" content="Check de Lavagem Segura | PDF Gratuito" />
+  <meta property="og:description"
+    content="Baixe gratuitamente o Check de Lavagem Segura - Guia completo para cuidar da pintura do seu carro." />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://osegredododetalhamento.com.br/check-lavagem-segura.html" />
+  <meta property="twitter:title" content="Check de Lavagem Segura | PDF Gratuito" />
+  <meta property="twitter:description"
+    content="Baixe gratuitamente o Check de Lavagem Segura - Guia completo para cuidar da pintura do seu carro." />
+  <meta property="twitter:image" content="assets/images/og-image.jpg" />
+
+  <title>CarsLab | Checklist de Lavagem Segura</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/icons/icon.ico" />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#ffde59',
+              dark: '#E55A2B',
+              light: '#FF8C5A',
+            },
+            secondary: {
+              DEFAULT: '#004E89',
+              dark: '#003D6B',
+            },
+            accent: '#FFD23F',
+            text: {
+              DEFAULT: '#333333',
+              light: '#666666',
+              lighter: '#999999',
+            },
+            bg: {
+              DEFAULT: '#FFFFFF',
+              light: '#F8F9FA',
+              dark: '#1A1A1A',
+            },
+            success: '#28A745',
+            error: '#DC3545',
+            warning: '#FFC107',
+            info: '#17A2B8',
+          },
+          fontFamily: {
+            primary: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            heading: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+          fontSize: {
+            xs: '0.75rem',    // 12px
+            sm: '0.875rem',   // 14px
+            base: '1rem',     // 16px
+            lg: '1.125rem',   // 18px
+            xl: '1.25rem',    // 20px
+            '2xl': '1.5rem',  // 24px
+            '3xl': '1.875rem', // 30px
+            '4xl': '2.25rem',  // 36px
+            '5xl': '3rem',     // 48px
+            '6xl': '3.75rem',  // 60px
+          },
+          spacing: {
+            xs: '0.25rem',   // 4px
+            sm: '0.5rem',     // 8px
+            md: '1rem',      // 16px
+            lg: '1.5rem',    // 24px
+            xl: '2rem',      // 32px
+            '2xl': '3rem',   // 48px
+            '3xl': '4rem',   // 64px
+            '4xl': '6rem',   // 96px
+            '5xl': '8rem',   // 128px
+          },
+          borderRadius: {
+            none: '0',
+            sm: '0.25rem',   // 4px
+            md: '0.5rem',    // 8px
+            lg: '0.75rem',   // 12px
+            xl: '1rem',      // 16px
+            '2xl': '1.5rem', // 24px
+          },
+          boxShadow: {
+            sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+            md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          },
+          zIndex: {
+            dropdown: '1000',
+            sticky: '1020',
+            fixed: '1030',
+            'modal-backdrop': '1040',
+            modal: '1050',
+            popover: '1060',
+            tooltip: '1070',
+          },
+          maxWidth: {
+            container: '1200px',
+            'container-wide': '1400px',
+            'container-narrow': '900px',
+          },
+          transitionDuration: {
+            fast: '150ms',
+            base: '300ms',
+            slow: '500ms',
+          },
+          screens: {
+            'xs': '480px',
+            'sm': '576px',
+            'md': '768px',
+            'lg': '992px',
+            'xl': '1200px',
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Custom CSS for animations and special cases -->
+  <link rel="stylesheet" href="styles/input.css" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+
+<body class="bg-bg">
+  <!-- Check Form Dialog -->
+  <div id="check-form-dialog-container"></div>
+
+  <!-- Header -->
+  <div class="bg-[#272727] p-2 flex items-center justify-center border border-[#272727] shadow-none">
+    <a href="/">
+      <img src="assets/images/cl-logo.png" alt="Logo" class="h-14 w-auto" loading="eager" />
+    </a>
+  </div>
+
+  <!-- Main Content Section -->
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-white shadow-none flex flex-col items-center justify-center text-center w-full px-4 mt-6">
+      <!-- Título Principal -->
+      <h1 class="text-2xl font-bold text-primary mb-2" data-aos="fade-up">
+        Checklist de Lavagem Segura
+      </h1>
+
+      <!-- Texto Complementar -->
+      <div class="text-[#272727]/80 text-sm mb-6" data-aos="fade-up" data-aos-delay="200">
+        <p>
+          Entenda, de forma simples e prática, o que usar e o que evitar na lavagem do carro para não causar riscos,
+          manchas e perda de brilho com o tempo.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center justify-center max-w-xs max-auto p-16 mb-6" data-aos="fade-up"
+        data-aos-delay="400">
+        <img src="assets/images/capa-check-lavagem-segura.png" alt="Check de Lavagem Segura"
+          class="w-full h-auto object-cover mb-4" loading="lazy">
+        <p class="text-sm text-[#272727]/80">Checklist rápido • Aplicação imediata • Evite erros comuns</p>
+      </div>
+
+      <!-- Botão CTA -->
+      <div class="mb-8" data-aos="fade-up" data-aos-delay="300">
+        <button id="downloadPdfBtn"
+          class="bg-primary text-[#272727]/80 mb-4 py-4 px-8 rounded-md font-bold text-lg md:text-xl transition-all duration-300 hover:bg-primary-dark hover:shadow-lg transform hover:-translate-y-1 w-full md:w-auto">
+          Baixar checklist gratuito
+        </button>
+        <p class="text-sm text-[#272727]/80">Material gratuito • Download imediato • Sem compromisso</p>
+      </div>
+    </section>
+
+    <!-- Texto de Suporte -->
+    <section class="bg-white shadow-none flex flex-col items-center justify-center text-center w-full px-4 mt-4">
+      <!-- Lista de itens do checklist -->
+      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#272727] p-6 rounded-md"
+        data-aos="fade-up" data-aos-delay="400">
+        <h3 class="text-lg font-bold text-primary mb-2">O que você vai encontrar no checklist </h3>
+        <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Produtos seguros para lavagem externa e interna</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>O que evitar para não riscar a pintura</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Cuidados básicos com interior e acabamento</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Erros comuns que causam danos invisíveis</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#272727] p-6 rounded-md"
+        data-aos="fade-up" data-aos-delay="400">
+        <h3 class="text-lg font-bold text-primary mb-2">Para quem é / Para quem não é </h3>
+        <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
+          <p class="text-sm text-left font-semibold text-white">Este checklist é para você que:</p>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Quer lavar o carro sem danificar pintura e interior</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Prefere fazer o básico do jeito certo</span>
+          </li>
+          <p class="text-sm text-left font-semibold text-white">Este checklist não é para quem:</p>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/no-symbol.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Busca técnicas avançadas ou profissionais/span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/no-symbol.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Quer um curso completo</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="bg-white shadow-none flex flex-col items-center justify-center text-center w-full px-4 mt-4 mb-8 gap-8">
+
+      <div class="flex flex-col items-center justify-center gap-2">
+        <img src="assets/icons/academic-cap.svg" alt="Check" class="w-10 h-10 flex-shrink-0 mt-0.5">
+        <p class="text-sm text-[#272727] font-semibold">Conteúdo educacional criado pela CarLab para quem busca
+          cuidar do carro de forma correta e consciente.</p>
+      </div>
+
+      <div class="flex flex-col items-center justify-center gap-2">
+        <img src="assets/icons/play.svg" alt="Check" class="w-10 h-10 flex-shrink-0 mt-0.5">
+        <p class="text-sm text-[#272727] font-semibold">Este checklist é o primeiro passo para entender o processo
+          completo de lavagem e detalhamento.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <!-- Footer Component -->
+  <footer class="bg-[#272727] text-white border-t border-[#353535] h-auto">
+    <div class="container mx-auto max-w-container h-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6 space-y-6">
+
+        <div class="footer__section mb-4 gap-2">
+          <h4 class="text-lg font-bold text-white mb-2">Legal</h4>
+          <ul class="list-none p-0">
+            <li class="mb-sm"><a data-legal-link="privacy-policy" href="#"
+                class="text-white/70 transition-colors duration-150 text-base hover:text-white">Política de
+                Privacidade</a></li>
+            <li class="mb-sm"><a data-legal-link="terms-of-use" href="#"
+                class="text-white/70 transition-colors duration-150 text-base hover:text-white">Termos de
+                Uso</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__section mb-4 gap-2">
+          <h4 class="text-lg font-bold text-white mb-2">Contato</h4>
+          <p class="text-white font-semibold text-sm mb-2">suportecarslab@gmail.com</p>
+          <p class="text-white/80 text-sm">Atendimento para dúvidas e suporte ao cliente em dias úteis.
+          </p>
+        </div>
+      </div>
+
+
+      <p class="text-white text-xs mb-sm text-center p-6">© 2026 CarsLab. Todos os
+        direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript Libraries -->
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Main Scripts -->
+  <script src="scripts/form-dialog.js"></script>
+  <script src="scripts/legal-links.js"></script>
+  <script src="scripts/animations.js"></script>
+
+  <!-- Custom Script for this page -->
+  <script>
+    /**
+     * Load component HTML file and insert it into a container
+     */
+    async function loadComponent(componentPath, containerId) {
+      try {
+        const response = await fetch(componentPath);
+        if (!response.ok) {
+          throw new Error(`Failed to load component: ${componentPath}`);
+        }
+
+        const html = await response.text();
+        const container = document.getElementById(containerId);
+
+        if (container) {
+          container.innerHTML = html;
+        } else {
+          console.error(`Container with ID "${containerId}" not found`);
+        }
+      } catch (error) {
+        console.error(`Error loading component:`, error);
+      }
+    }
+
+    /**
+     * Initialize page when DOM is ready
+     */
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Load components
+      await Promise.all([
+        loadComponent('components/funnel-components/check-form-dialog.html', 'check-form-dialog-container'),
+      ]);
+
+      // Initialize form dialog
+      if (typeof initFormDialog === 'function') {
+        initFormDialog();
+      }
+
+      // Initialize legal links
+      if (typeof updateLegalLinks === 'function') {
+        updateLegalLinks();
+      }
+
+      // Initialize animations
+      if (typeof initAnimations === 'function') {
+        initAnimations();
+      }
+
+      // Initialize AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
+        });
+      }
+
+      // Setup CTA button to open dialog
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn && typeof openFormDialog === 'function') {
+        downloadBtn.addEventListener('click', () => {
+          openFormDialog();
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
