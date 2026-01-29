@@ -26,7 +26,7 @@ const CONFIG = {
   links: {
     privacyPolicy: "/politica-privacidade",
     termsOfUse: "/termos-uso",
-    whatsapp: "https://wa.me/5511999999999",
+    whatsapp: "https://wa.me/5564996775544",
     email: "contato@exemplo.com",
   },
 
