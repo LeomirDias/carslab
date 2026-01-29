@@ -135,9 +135,6 @@
   </script>
   <!-- Custom CSS for animations and special cases -->
   <link rel="stylesheet" href="styles/input.css" />
-
-  <!-- AOS (Animate On Scroll) -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 
 <body class="bg-bg">
@@ -156,27 +153,26 @@
     <!-- Hero Section -->
     <section class="bg-white shadow-none flex flex-col items-center justify-center text-center w-full px-4 mt-6">
       <!-- Título Principal -->
-      <h1 class="text-2xl font-bold text-primary mb-2" data-aos="fade-up">
+      <h1 class="text-2xl font-bold text-primary mb-2">
         Checklist de Lavagem Segura
       </h1>
 
       <!-- Texto Complementar -->
-      <div class="text-[#272727]/80 text-sm mb-6" data-aos="fade-up" data-aos-delay="200">
+      <div class="text-[#272727]/80 text-sm mb-6">
         <p>
           Entenda, de forma simples e prática, o que usar e o que evitar na lavagem do carro para não causar riscos,
           manchas e perda de brilho com o tempo.
         </p>
       </div>
 
-      <div class="flex flex-col items-center justify-center max-w-xs max-auto p-16 mb-6" data-aos="fade-up"
-        data-aos-delay="400">
+      <div class="flex flex-col items-center justify-center max-w-xs max-auto p-16 mb-6">
         <img src="assets/images/capa-check-lavagem-segura.png" alt="Check de Lavagem Segura"
           class="w-full h-auto object-cover mb-4" loading="lazy">
         <p class="text-sm text-[#272727]/80">Checklist rápido • Aplicação imediata • Evite erros comuns</p>
       </div>
 
       <!-- Botão CTA -->
-      <div class="mb-8" data-aos="fade-up" data-aos-delay="300">
+      <div class="mb-8">
         <button id="downloadPdfBtn"
           class="bg-primary text-[#272727]/80 mb-4 py-4 px-8 rounded-md font-bold text-lg md:text-xl transition-all duration-300 hover:bg-primary-dark hover:shadow-lg transform hover:-translate-y-1 w-full md:w-auto">
           Baixar checklist gratuito
@@ -188,8 +184,7 @@
     <!-- Texto de Suporte -->
     <section class="bg-white shadow-none flex flex-col items-center justify-center text-center w-full px-4 mt-4">
       <!-- Lista de itens do checklist -->
-      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#272727] p-6 rounded-md"
-        data-aos="fade-up" data-aos-delay="400">
+      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#272727] p-6 rounded-md">
         <h3 class="text-lg font-bold text-primary mb-2">O que você vai encontrar no checklist </h3>
         <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
           <li class="flex items-start gap-2 text-sm text-left text-white">
@@ -211,8 +206,7 @@
         </ul>
       </div>
 
-      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#272727] p-6 rounded-md"
-        data-aos="fade-up" data-aos-delay="400">
+      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#272727] p-6 rounded-md">
         <h3 class="text-lg font-bold text-primary mb-2">Para quem é / Para quem não é </h3>
         <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
           <p class="text-sm text-left font-semibold text-white">Este checklist é para você que:</p>
@@ -287,15 +281,11 @@
   </footer>
 
   <!-- JavaScript Libraries -->
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <!-- Config (copie config.example.js para config.js e defina CONFIG.leadApi) -->
   <script src="config.js"></script>
   <!-- Main Scripts -->
   <script src="scripts/form-dialog.js"></script>
   <script src="scripts/legal-links.js"></script>
-  <script src="scripts/animations.js"></script>
 
   <!-- Custom Script for this page -->
   <script>
@@ -339,20 +329,6 @@
       // Initialize legal links
       if (typeof updateLegalLinks === 'function') {
         updateLegalLinks();
-      }
-
-      // Initialize animations
-      if (typeof initAnimations === 'function') {
-        initAnimations();
-      }
-
-      // Initialize AOS
-      if (typeof AOS !== 'undefined') {
-        AOS.init({
-          duration: 800,
-          easing: 'ease-in-out',
-          once: true
-        });
       }
 
       // Abre o dialog do funnel (mesmo container usado no init)

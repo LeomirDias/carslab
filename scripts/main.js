@@ -96,11 +96,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof updateLegalLinks === "function") {
     updateLegalLinks();
   }
-
-  // Initialize animations after components are loaded
-  if (typeof initAnimations === "function") {
-    initAnimations();
-  }
 });
 
 /**
@@ -111,7 +106,7 @@ function smoothScrollTo(selector) {
   const element = document.querySelector(selector);
   if (element) {
     element.scrollIntoView({
-      behavior: "smooth",
+      behavior: "auto",
       block: "start",
     });
   }
