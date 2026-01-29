@@ -4,13 +4,34 @@
  */
 
 /**
- * Envia os dados do lead para a API externa
- * @param {Object} dadosLead - Objeto com os dados do lead
+ * Retorna a URL e o token da API de leads (CONFIG.leadApi ou variáveis de ambiente em build)
+ */
+function getLeadApiConfig() {
+  if (typeof CONFIG !== "undefined" && CONFIG.leadApi) {
+    return { url: CONFIG.leadApi.url, token: CONFIG.leadApi.token };
+  }
+  if (typeof process !== "undefined" && process.env) {
+    return {
+      url: process.env.LEAD_API_URL || process.env.API_URL,
+      token: process.env.LEAD_API_TOKEN || process.env.API_TOKEN,
+    };
+  }
+  return { url: "", token: "" };
+}
+
+/**
+ * Envia os dados do lead para a API externa (POST).
+ * Estrutura esperada pela API: landing_source, name, email?, phone?, contact_type?, user_type?, consent_marketing?, conversion_status?, product_id?
+ * @param {Object} dadosLead - Objeto no formato da API (createLeadSchema)
  * @returns {Promise<Object>} - Resposta da API
  */
 async function criarLead(dadosLead) {
-  const API_URL = process.env.API_URL; // ou sua URL de produção
-  const API_TOKEN = process.env.API_TOKEN; // ou use variável de ambiente
+  const { url: API_URL, token: API_TOKEN } = getLeadApiConfig();
+  if (!API_URL || !API_TOKEN) {
+    throw new Error(
+      "API de leads não configurada. Defina CONFIG.leadApi em config.js",
+    );
+  }
 
   try {
     const response = await fetch(API_URL, {
@@ -410,22 +431,37 @@ function initFormDialog() {
 
         console.log("Dados do formulário:", formData);
 
-        // Prepara os dados para a API no formato esperado
+        // Prepara os dados para a API no formato createLeadSchema (email e/ou phone; não enviar null)
+        const contactType =
+          receiveEmail && receiveWhatsapp
+            ? "both"
+            : receiveEmail
+              ? "email"
+              : "phone";
         const dadosLead = {
           landing_source: "check-lavagem-segura",
           name: standardizeName(fullName),
-          email: receiveEmail ? email.trim() : null,
-          phone: receiveWhatsapp ? phone.replace(/\D/g, "") : null,
-          contact_type: receiveEmail
-            ? "email"
-            : receiveWhatsapp
-              ? "whatsapp"
-              : null,
-          user_type: "lead",
+          contact_type: contactType,
+          user_type: "hobby",
           consent_marketing: true,
           conversion_status: "not_converted",
-          product_id: null,
         };
+        if (receiveEmail && email.trim()) {
+          dadosLead.email = email.trim();
+        }
+        if (receiveWhatsapp && phone) {
+          dadosLead.phone = phone.replace(/\D/g, "");
+        }
+        // product_id (UUID) da página check-lavagem-segura, quando configurado
+        const productId =
+          typeof CONFIG !== "undefined" &&
+          CONFIG.leadApi &&
+          CONFIG.leadApi.productId
+            ? CONFIG.leadApi.productId
+            : null;
+        if (productId) {
+          dadosLead.product_id = productId;
+        }
 
         // Desabilita o botão de submit para evitar múltiplos envios
         const submitBtn = document.getElementById("submitDialogBtn");

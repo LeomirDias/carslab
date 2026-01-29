@@ -4,14 +4,35 @@
  */
 
 /**
+ * Retorna a URL e o token da API de leads (CONFIG.leadApi ou variáveis de ambiente em build)
+ */
+function getLeadApiConfig() {
+  if (typeof CONFIG !== "undefined" && CONFIG.leadApi) {
+    return { url: CONFIG.leadApi.url, token: CONFIG.leadApi.token };
+  }
+  if (typeof process !== "undefined" && process.env) {
+    return {
+      url: process.env.LEAD_API_URL || process.env.API_URL,
+      token: process.env.LEAD_API_TOKEN || process.env.API_TOKEN,
+    };
+  }
+  return { url: "", token: "" };
+}
+
+/**
  * Atualiza o user_type do lead na API externa (PATCH).
+ * Estrutura esperada: user_type (obrigatório), email? ou phone? (ao menos um para identificar o lead).
  * @param {Object} emailOuPhone - Objeto com email e/ou phone: { email?: string, phone?: string }
  * @param {string} novoUserType - Novo tipo: "hobby" ou "empreendedor"
  * @returns {Promise<Object>} - Resposta da API { success, data }
  */
 async function atualizarUserType(emailOuPhone, novoUserType) {
-  const API_URL = process.env.API_URL; // ou sua URL de produção
-  const API_TOKEN = process.env.API_TOKEN; // ou use variável de ambiente
+  const { url: API_URL, token: API_TOKEN } = getLeadApiConfig();
+  if (!API_URL || !API_TOKEN) {
+    throw new Error(
+      "API de leads não configurada. Defina CONFIG.leadApi em config.js",
+    );
+  }
 
   const body = {
     user_type: novoUserType,
@@ -201,7 +222,7 @@ function initQuestionDialog() {
 
   // Submissão do formulário
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       hideQuestionError();
 
@@ -226,7 +247,7 @@ function initQuestionDialog() {
 
       const userType = selectedOption.value;
 
-      // Monta objeto de contato para a API (email ou phone)
+      // Monta objeto de contato para a API (email ou phone) — PATCH exige ao menos um
       const emailOuPhone =
         contactInfo.type === "email"
           ? { email: contactInfo.contact }
@@ -240,12 +261,17 @@ function initQuestionDialog() {
         submitBtn.textContent = "Enviando...";
       }
 
-      // Atualiza o user_type do lead na API externa
+      // Atualiza o user_type do lead na API externa (PATCH)
       try {
-        atualizarUserType(emailOuPhone, userType);
+        await atualizarUserType(emailOuPhone, userType);
       } catch (error) {
         console.error("Erro ao atualizar user_type na API:", error);
-        // Continua o fluxo: salva no localStorage e fecha o dialog
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+        alert("Não foi possível atualizar. Tente novamente.");
+        return;
       }
 
       if (submitBtn) {

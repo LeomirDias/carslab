@@ -33,3 +33,5 @@ build/
 .cursor
 
 .env
+
+.config.js
