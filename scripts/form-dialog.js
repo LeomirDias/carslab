@@ -4,6 +4,39 @@
  */
 
 /**
+ * Envia os dados do lead para a API externa
+ * @param {Object} dadosLead - Objeto com os dados do lead
+ * @returns {Promise<Object>} - Resposta da API
+ */
+async function criarLead(dadosLead) {
+  const API_URL = process.env.API_URL; // ou sua URL de produção
+  const API_TOKEN = process.env.API_TOKEN; // ou use variável de ambiente
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+      body: JSON.stringify(dadosLead),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Erro ao criar lead");
+    }
+
+    console.log("Lead criado com sucesso:", data);
+    return data;
+  } catch (error) {
+    console.error("Erro na requisição:", error);
+    throw error;
+  }
+}
+
+/**
  * Padroniza o nome completo (primeira letra de cada palavra em maiúscula)
  * @param {string} name - Nome a ser padronizado
  * @returns {string} - Nome padronizado
@@ -312,7 +345,7 @@ function initFormDialog() {
 
   // Submissão do formulário
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       hideAllErrors();
 
@@ -351,7 +384,7 @@ function initFormDialog() {
         hasError = true;
       }
 
-      // Se não houver erros, redireciona
+      // Se não houver erros, processa o envio
       if (!hasError) {
         // Salva os dados no localStorage antes de enviar
         if (receiveEmail && email) {
@@ -361,7 +394,7 @@ function initFormDialog() {
           savePhoneToLocalStorage(phone);
         }
 
-        // Aqui você pode adicionar código para enviar os dados para um servidor
+        // Prepara os dados do formulário
         const formData = {
           fullName: standardizeName(fullName),
           receiveEmail: receiveEmail,
@@ -377,11 +410,51 @@ function initFormDialog() {
 
         console.log("Dados do formulário:", formData);
 
+        // Prepara os dados para a API no formato esperado
+        const dadosLead = {
+          landing_source: "check-lavagem-segura",
+          name: standardizeName(fullName),
+          email: receiveEmail ? email.trim() : null,
+          phone: receiveWhatsapp ? phone.replace(/\D/g, "") : null,
+          contact_type: receiveEmail
+            ? "email"
+            : receiveWhatsapp
+              ? "whatsapp"
+              : null,
+          user_type: "lead",
+          consent_marketing: true,
+          conversion_status: "not_converted",
+          product_id: null,
+        };
+
+        // Desabilita o botão de submit para evitar múltiplos envios
+        const submitBtn = document.getElementById("submitDialogBtn");
+        const originalBtnText = submitBtn ? submitBtn.textContent : "";
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Enviando...";
+        }
+
+        // Envia os dados para a API
+        try {
+          await criarLead(dadosLead);
+          console.log("Lead enviado com sucesso para a API");
+        } catch (error) {
+          console.error("Erro ao enviar lead para a API:", error);
+          // Continua o fluxo mesmo se houver erro na API
+          // Você pode adicionar uma notificação de erro aqui se desejar
+        }
+
+        // Reabilita o botão
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+
         // Fecha o dialog
         closeFormDialog();
 
         // Pega o link do botão de submit
-        const submitBtn = document.getElementById("submitDialogBtn");
         const redirectLink = submitBtn
           ? submitBtn.getAttribute("data-redirect-link")
           : "";

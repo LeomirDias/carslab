@@ -4,6 +4,41 @@
  */
 
 /**
+ * Atualiza o user_type do lead na API externa (PATCH).
+ * @param {Object} emailOuPhone - Objeto com email e/ou phone: { email?: string, phone?: string }
+ * @param {string} novoUserType - Novo tipo: "hobby" ou "empreendedor"
+ * @returns {Promise<Object>} - Resposta da API { success, data }
+ */
+async function atualizarUserType(emailOuPhone, novoUserType) {
+  const API_URL = process.env.API_URL; // ou sua URL de produção
+  const API_TOKEN = process.env.API_TOKEN; // ou use variável de ambiente
+
+  const body = {
+    user_type: novoUserType,
+    ...(emailOuPhone.email && { email: emailOuPhone.email }),
+    ...(emailOuPhone.phone && { phone: emailOuPhone.phone }),
+  };
+
+  const response = await fetch(API_URL, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  const data = await response.json();
+
+  if (response.status === 401) throw new Error("Token inválido");
+  if (response.status === 404) throw new Error("Lead não encontrado");
+  if (response.status === 400) throw new Error(data.error || "Dados inválidos");
+  if (!response.ok) throw new Error(data.error || "Erro ao atualizar");
+
+  return data; // { success: true, data: { id, user_type, email, phone, ... } }
+}
+
+/**
  * Recupera o email do localStorage
  * @returns {string|null} - Email salvo ou null se não existir
  */
@@ -191,6 +226,33 @@ function initQuestionDialog() {
 
       const userType = selectedOption.value;
 
+      // Monta objeto de contato para a API (email ou phone)
+      const emailOuPhone =
+        contactInfo.type === "email"
+          ? { email: contactInfo.contact }
+          : { phone: contactInfo.contact };
+
+      // Desabilita o botão para evitar múltiplos envios
+      const submitBtn = document.getElementById("submitQuestionBtn");
+      const originalBtnText = submitBtn ? submitBtn.textContent : "";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando...";
+      }
+
+      // Atualiza o user_type do lead na API externa
+      try {
+        atualizarUserType(emailOuPhone, userType);
+      } catch (error) {
+        console.error("Erro ao atualizar user_type na API:", error);
+        // Continua o fluxo: salva no localStorage e fecha o dialog
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+
       // Salva contato (email ou telefone) + tipo de usuário no localStorage
       saveUserTypeToLocalStorage(
         contactInfo.contact,
@@ -211,3 +273,4 @@ window.initQuestionDialog = initQuestionDialog;
 window.getEmailFromLocalStorage = getEmailFromLocalStorage;
 window.getPhoneFromLocalStorage = getPhoneFromLocalStorage;
 window.getContactFromLocalStorage = getContactFromLocalStorage;
+window.atualizarUserType = atualizarUserType;
