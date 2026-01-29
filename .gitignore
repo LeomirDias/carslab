@@ -34,4 +34,4 @@ build/
 
 .env
 
-.config.js
+config.js
