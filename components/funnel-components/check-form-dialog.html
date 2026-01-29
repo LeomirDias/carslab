@@ -70,8 +70,22 @@
 
       <!-- Botão de Enviar -->
       <button type="submit" id="submitDialogBtn" data-redirect-link="obrigado.html" data-redirect-target="_self"
-        class="w-full bg-primary text-white py-4 px-6 rounded-md font-bold text-lg transition-all duration-300 hover:bg-primary-dark hover:shadow-lg transform hover:-translate-y-1">
-        Receber PDF Gratuito
+        class="submit-dialog-btn w-full bg-primary text-white py-4 px-6 rounded-md font-bold text-lg transition-all duration-300 hover:bg-primary-dark hover:shadow-lg transform hover:-translate-y-1 relative group disabled:opacity-90 disabled:cursor-not-allowed disabled:transform-none">
+        <span
+          class="submit-dialog-btn-label inline-flex items-center justify-center gap-2 group-[.is-loading]:invisible">
+          Receber PDF Gratuito
+        </span>
+        <span
+          class="submit-dialog-btn-loading hidden group-[.is-loading]:inline-flex items-center justify-center gap-2 absolute inset-0 bg-primary rounded-md">
+          <svg class="animate-spin h-5 w-5 text-white shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
+          </svg>
+          Enviando...
+        </span>
       </button>
     </form>
   </div>

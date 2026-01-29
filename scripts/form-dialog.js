@@ -475,10 +475,9 @@ function initFormDialog(containerId) {
         }
 
         const submitBtn = get("submitDialogBtn");
-        const originalBtnText = submitBtn ? submitBtn.textContent : "";
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = "Enviando...";
+          submitBtn.classList.add("is-loading");
         }
 
         let apiOk = false;
@@ -500,7 +499,7 @@ function initFormDialog(containerId) {
 
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
+          submitBtn.classList.remove("is-loading");
         }
 
         if (!apiOk) return;
