@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/o-segredo-do-detalhamento",
