@@ -46,7 +46,10 @@ async function criarLead(dadosLead) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || "Erro ao criar lead");
+      const err = new Error(data.error || "Erro ao criar lead");
+      err.status = response.status;
+      err.data = data;
+      throw err;
     }
 
     console.log("Lead criado com sucesso:", data);
@@ -194,9 +197,13 @@ function loadPhoneFromLocalStorage() {
 
 /**
  * Abre o dialog do formulário
+ * @param {string} [containerId] - ID do container onde o dialog está (ex.: check-form-dialog-container)
  */
-function openFormDialog() {
-  const dialog = document.getElementById("formDialog");
+function openFormDialog(containerId) {
+  const root = containerId ? document.getElementById(containerId) : document;
+  const dialog = root
+    ? root.querySelector("#formDialog")
+    : document.getElementById("formDialog");
   if (dialog) {
     dialog.classList.remove("hidden");
     dialog.classList.add("flex");
@@ -210,51 +217,75 @@ function openFormDialog() {
 
 /**
  * Fecha o dialog do formulário
+ * @param {string} [containerId] - ID do container onde o dialog está
  */
-function closeFormDialog() {
-  const dialog = document.getElementById("formDialog");
+function closeFormDialog(containerId) {
+  const root = containerId ? document.getElementById(containerId) : document;
+  const dialog = root
+    ? root.querySelector("#formDialog")
+    : document.getElementById("formDialog");
   if (dialog) {
     dialog.classList.add("hidden");
     dialog.classList.remove("flex");
-    // Restaura scroll do body
     document.body.style.overflow = "auto";
-    // Limpa o formulário
-    document.getElementById("leadForm").reset();
-    // Remove mensagens de erro
-    hideAllErrors();
-    // Oculta os campos de contato
-    document.getElementById("emailField").classList.add("hidden");
-    document.getElementById("phoneField").classList.add("hidden");
+    const getEl = (id) =>
+      root && root.querySelector
+        ? root.querySelector("#" + id)
+        : document.getElementById(id);
+    const leadFormEl = getEl("leadForm");
+    if (leadFormEl) leadFormEl.reset();
+    const emailFieldEl = getEl("emailField");
+    const phoneFieldEl = getEl("phoneField");
+    if (emailFieldEl) emailFieldEl.classList.add("hidden");
+    if (phoneFieldEl) phoneFieldEl.classList.add("hidden");
+    hideAllErrors(root);
   }
 }
 
 /**
  * Esconde todas as mensagens de erro
+ * @param {Element} [root] - Elemento raiz para buscar (ex.: container do dialog)
  */
-function hideAllErrors() {
-  document.getElementById("fullNameError").classList.add("hidden");
-  document.getElementById("emailError").classList.add("hidden");
-  document.getElementById("phoneError").classList.add("hidden");
+function hideAllErrors(root) {
+  const getEl = (id) =>
+    root && root.querySelector
+      ? root.querySelector("#" + id)
+      : document.getElementById(id);
+  ["fullNameError", "emailError", "phoneError"].forEach((id) => {
+    const el = getEl(id);
+    if (el) el.classList.add("hidden");
+  });
 }
 
 /**
  * Mostra mensagem de erro para um campo específico
  * @param {string} fieldId - ID do campo com erro
+ * @param {Element} [root] - Elemento raiz para buscar
  */
-function showError(fieldId) {
-  document.getElementById(`${fieldId}Error`).classList.remove("hidden");
+function showError(fieldId, root) {
+  const getEl = (id) =>
+    root && root.querySelector
+      ? root.querySelector("#" + id)
+      : document.getElementById(id);
+  const el = getEl(`${fieldId}Error`);
+  if (el) el.classList.remove("hidden");
 }
 
 /**
  * Atualiza a visibilidade dos campos de contato baseado nos checkboxes
+ * @param {Element} [root] - Elemento raiz para buscar (ex.: container do dialog)
  */
-function updateContactFieldsVisibility() {
-  const receiveEmailCheckbox = document.getElementById("receiveEmail");
-  const receiveWhatsappCheckbox = document.getElementById("receiveWhatsapp");
-  const emailField = document.getElementById("emailField");
-  const phoneField = document.getElementById("phoneField");
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
+function updateContactFieldsVisibility(root) {
+  const getEl = (id) =>
+    root && root.querySelector
+      ? root.querySelector("#" + id)
+      : document.getElementById(id);
+  const receiveEmailCheckbox = getEl("receiveEmail");
+  const receiveWhatsappCheckbox = getEl("receiveWhatsapp");
+  const emailField = getEl("emailField");
+  const phoneField = getEl("phoneField");
+  const emailInput = getEl("email");
+  const phoneInput = getEl("phone");
 
   // Mostra/oculta campo de email
   if (receiveEmailCheckbox && receiveEmailCheckbox.checked) {
@@ -287,34 +318,43 @@ function updateContactFieldsVisibility() {
 
 /**
  * Inicializa o dialog e seus event listeners
+ * @param {string} [containerId] - ID do container onde o dialog está (ex.: check-form-dialog-container). Use na página do funnel para garantir que o form correto seja vinculado.
  */
-function initFormDialog() {
-  const dialog = document.getElementById("formDialog");
-  const closeBtn = document.getElementById("closeDialogBtn");
-  const form = document.getElementById("leadForm");
-  const fullNameInput = document.getElementById("fullName");
-  const phoneInput = document.getElementById("phone");
-  const receiveEmailCheckbox = document.getElementById("receiveEmail");
-  const receiveWhatsappCheckbox = document.getElementById("receiveWhatsapp");
+function initFormDialog(containerId) {
+  const root = containerId ? document.getElementById(containerId) : document;
+  if (containerId && !root) {
+    console.warn("initFormDialog: container não encontrado", containerId);
+    return;
+  }
+  const get = (id) =>
+    root.querySelector
+      ? root.querySelector("#" + id)
+      : document.getElementById(id);
+  const dialog = get("formDialog");
+  const closeBtn = get("closeDialogBtn");
+  const form = get("leadForm");
+  const fullNameInput = get("fullName");
+  const phoneInput = get("phone");
+  const receiveEmailCheckbox = get("receiveEmail");
+  const receiveWhatsappCheckbox = get("receiveWhatsapp");
 
-  // Fecha o dialog ao clicar no botão de fechar
+  const closeDialog = () => closeFormDialog(containerId);
+
   if (closeBtn) {
-    closeBtn.addEventListener("click", closeFormDialog);
+    closeBtn.addEventListener("click", closeDialog);
   }
 
-  // Fecha o dialog ao clicar fora dele
   if (dialog) {
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) {
-        closeFormDialog();
+        closeDialog();
       }
     });
   }
 
-  // Fecha o dialog ao pressionar ESC
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeFormDialog();
+    if (e.key === "Escape" && dialog && !dialog.classList.contains("hidden")) {
+      closeDialog();
     }
   });
 
@@ -338,8 +378,7 @@ function initFormDialog() {
     });
   }
 
-  // Salva o email no localStorage quando o usuário digita
-  const emailInput = document.getElementById("email");
+  const emailInput = get("email");
   if (emailInput) {
     emailInput.addEventListener("input", (e) => {
       saveEmailToLocalStorage(e.target.value);
@@ -350,42 +389,36 @@ function initFormDialog() {
     });
   }
 
-  // Atualiza visibilidade dos campos quando os checkboxes mudam
+  const updateVisibility = () => updateContactFieldsVisibility(root);
   if (receiveEmailCheckbox) {
-    receiveEmailCheckbox.addEventListener(
-      "change",
-      updateContactFieldsVisibility,
-    );
+    receiveEmailCheckbox.addEventListener("change", updateVisibility);
   }
   if (receiveWhatsappCheckbox) {
-    receiveWhatsappCheckbox.addEventListener(
-      "change",
-      updateContactFieldsVisibility,
-    );
+    receiveWhatsappCheckbox.addEventListener("change", updateVisibility);
   }
 
-  // Submissão do formulário
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      hideAllErrors();
+      hideAllErrors(root);
 
-      const fullName = document.getElementById("fullName").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const receiveEmail = document.getElementById("receiveEmail").checked;
-      const receiveWhatsapp =
-        document.getElementById("receiveWhatsapp").checked;
+      const fullName = (get("fullName") && get("fullName").value) || "";
+      const email = (get("email") && get("email").value) || "";
+      const phone = (get("phone") && get("phone").value) || "";
+      const receiveEmail = get("receiveEmail")
+        ? get("receiveEmail").checked
+        : false;
+      const receiveWhatsapp = get("receiveWhatsapp")
+        ? get("receiveWhatsapp").checked
+        : false;
 
       let hasError = false;
 
-      // Valida nome completo (deve ter pelo menos 2 palavras)
       if (fullName.trim().split(" ").length < 2) {
-        showError("fullName");
+        showError("fullName", root);
         hasError = true;
       }
 
-      // Valida se pelo menos um método de contato foi selecionado
       if (!receiveEmail && !receiveWhatsapp) {
         alert(
           "Por favor, selecione pelo menos uma forma de recebimento (e-mail ou WhatsApp)",
@@ -393,21 +426,17 @@ function initFormDialog() {
         hasError = true;
       }
 
-      // Valida email se foi selecionado
       if (receiveEmail && !validateEmail(email)) {
-        showError("email");
+        showError("email", root);
         hasError = true;
       }
 
-      // Valida telefone se foi selecionado
       if (receiveWhatsapp && !validatePhone(phone)) {
-        showError("phone");
+        showError("phone", root);
         hasError = true;
       }
 
-      // Se não houver erros, processa o envio
       if (!hasError) {
-        // Salva os dados no localStorage antes de enviar
         if (receiveEmail && email) {
           saveEmailToLocalStorage(email);
         }
@@ -415,23 +444,6 @@ function initFormDialog() {
           savePhoneToLocalStorage(phone);
         }
 
-        // Prepara os dados do formulário
-        const formData = {
-          fullName: standardizeName(fullName),
-          receiveEmail: receiveEmail,
-          receiveWhatsapp: receiveWhatsapp,
-        };
-
-        if (receiveEmail) {
-          formData.email = email.trim();
-        }
-        if (receiveWhatsapp) {
-          formData.phone = phone.replace(/\D/g, ""); // Remove formatação para salvar apenas números
-        }
-
-        console.log("Dados do formulário:", formData);
-
-        // Prepara os dados para a API no formato createLeadSchema (email e/ou phone; não enviar null)
         const contactType =
           receiveEmail && receiveWhatsapp
             ? "both"
@@ -452,7 +464,6 @@ function initFormDialog() {
         if (receiveWhatsapp && phone) {
           dadosLead.phone = phone.replace(/\D/g, "");
         }
-        // product_id (UUID) da página check-lavagem-segura, quando configurado
         const productId =
           typeof CONFIG !== "undefined" &&
           CONFIG.leadApi &&
@@ -463,34 +474,39 @@ function initFormDialog() {
           dadosLead.product_id = productId;
         }
 
-        // Desabilita o botão de submit para evitar múltiplos envios
-        const submitBtn = document.getElementById("submitDialogBtn");
+        const submitBtn = get("submitDialogBtn");
         const originalBtnText = submitBtn ? submitBtn.textContent : "";
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = "Enviando...";
         }
 
-        // Envia os dados para a API
+        let apiOk = false;
         try {
           await criarLead(dadosLead);
-          console.log("Lead enviado com sucesso para a API");
+          apiOk = true;
         } catch (error) {
           console.error("Erro ao enviar lead para a API:", error);
-          // Continua o fluxo mesmo se houver erro na API
-          // Você pode adicionar uma notificação de erro aqui se desejar
+          if (error.status === 409) {
+            alert(
+              "Já existe um cadastro com este e-mail ou telefone. Utilize outros dados ou acesse seu e-mail/WhatsApp para obter o material.",
+            );
+          } else {
+            alert(
+              "Não foi possível enviar. Verifique sua conexão e tente novamente.",
+            );
+          }
         }
 
-        // Reabilita o botão
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = originalBtnText;
         }
 
-        // Fecha o dialog
-        closeFormDialog();
+        if (!apiOk) return;
 
-        // Pega o link do botão de submit
+        closeDialog();
+
         const redirectLink = submitBtn
           ? submitBtn.getAttribute("data-redirect-link")
           : "";
@@ -498,13 +514,10 @@ function initFormDialog() {
           ? submitBtn.getAttribute("data-redirect-target") || "_blank"
           : "_blank";
 
-        // Redireciona para o link
         if (redirectLink) {
           if (redirectTarget === "_self") {
-            // Redireciona na mesma aba
             window.location.href = redirectLink;
           } else {
-            // Redireciona em nova aba
             window.open(redirectLink, "_blank", "noopener,noreferrer");
           }
         }

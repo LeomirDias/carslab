@@ -331,9 +331,9 @@
         loadComponent('components/funnel-components/check-form-dialog.html', 'check-form-dialog-container'),
       ]);
 
-      // Initialize form dialog
+      // Inicializa o form dialog do funnel (container garante vínculo com o form carregado)
       if (typeof initFormDialog === 'function') {
-        initFormDialog();
+        initFormDialog('check-form-dialog-container');
       }
 
       // Initialize legal links
@@ -355,11 +355,11 @@
         });
       }
 
-      // Setup CTA button to open dialog
+      // Abre o dialog do funnel (mesmo container usado no init)
       const downloadBtn = document.getElementById('downloadPdfBtn');
       if (downloadBtn && typeof openFormDialog === 'function') {
         downloadBtn.addEventListener('click', () => {
-          openFormDialog();
+          openFormDialog('check-form-dialog-container');
         });
       }
     });
