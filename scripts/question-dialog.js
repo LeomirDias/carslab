@@ -199,6 +199,14 @@ function initQuestionDialog() {
   const dialog = document.getElementById("questionDialog");
   const form = document.getElementById("questionForm");
 
+  // Botão "Prefiro não responder": fecha o dialog sem enviar nenhuma informação
+  const closeBtn = document.getElementById("closeQuestionDialogBtn");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      closeQuestionDialog();
+    });
+  }
+
   // Fecha o dialog ao clicar fora dele (opcional - pode remover se quiser obrigar resposta)
   if (dialog) {
     dialog.addEventListener("click", (e) => {
