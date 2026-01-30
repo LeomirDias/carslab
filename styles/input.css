@@ -30,19 +30,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* Customização das setas do carrossel */
-.testimonials__carousel .swiper-button-next,
-.testimonials__carousel .swiper-button-prev {
-  --swiper-navigation-size: 20px; /* tamanho padrão é 44px */
-  color: #ffde59;
-}
-
-.testimonials__carousel .swiper-pagination-bullet {
-  background: rgba(0, 0, 0, 0.2);
-  opacity: 1;
-}
-
-.testimonials__carousel .swiper-pagination-bullet-active {
-  background: #ffde59;
-}
