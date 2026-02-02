@@ -457,7 +457,7 @@ function initFormDialog(containerId) {
             ? "email"
             : "phone";
         const dadosLead = {
-          landing_source: "check-lavagem-segura",
+          landing_source: "Funil de vendas",
           name: standardizeName(fullName),
           contact_type: contactType,
           user_type: "hobby",
