@@ -3,20 +3,21 @@
  * Componente de dialog com formulário de captura de leads
  */
 
+// API de leads (edite aqui os valores; não é mais necessário config.js)
+const LEAD_API_CONFIG = {
+  url: "https://sua-api.com/api/leads",
+  token: "SEU_LEAD_API_TOKEN",
+  productId: "ff3fdf61-e88f-43b5-982a-32d50f112414",
+};
+
 /**
- * Retorna a URL e o token da API de leads (CONFIG.leadApi ou variáveis de ambiente em build)
+ * Retorna a URL e o token da API de leads
  */
 function getLeadApiConfig() {
-  if (typeof CONFIG !== "undefined" && CONFIG.leadApi) {
-    return { url: CONFIG.leadApi.url, token: CONFIG.leadApi.token };
-  }
-  if (typeof process !== "undefined" && process.env) {
-    return {
-      url: process.env.LEAD_API_URL || process.env.API_URL,
-      token: process.env.LEAD_API_TOKEN || process.env.API_TOKEN,
-    };
-  }
-  return { url: "", token: "" };
+  return {
+    url: LEAD_API_CONFIG.url,
+    token: LEAD_API_CONFIG.token,
+  };
 }
 
 /**
@@ -29,7 +30,7 @@ async function criarLead(dadosLead) {
   const { url: API_URL, token: API_TOKEN } = getLeadApiConfig();
   if (!API_URL || !API_TOKEN) {
     throw new Error(
-      "API de leads não configurada. Defina CONFIG.leadApi em config.js"
+      "API de leads não configurada. Edite LEAD_API_CONFIG em scripts/form-dialog.js"
     );
   }
 
@@ -469,14 +470,8 @@ function initFormDialog(containerId) {
         if (receiveWhatsapp && phone) {
           dadosLead.phone = phone.replace(/\D/g, "");
         }
-        const productId =
-          typeof CONFIG !== "undefined" &&
-          CONFIG.leadApi &&
-          CONFIG.leadApi.productId
-            ? CONFIG.leadApi.productId
-            : null;
-        if (productId) {
-          dadosLead.product_ids = [productId];
+        if (LEAD_API_CONFIG.productId) {
+          dadosLead.product_ids = [LEAD_API_CONFIG.productId];
         }
 
         const submitBtn = get("submitDialogBtn");

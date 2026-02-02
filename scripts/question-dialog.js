@@ -3,20 +3,20 @@
  * Componente de dialog com pergunta rápida sobre o objetivo do usuário
  */
 
+// API de leads (mesmos valores de scripts/form-dialog.js; edite em um único lugar se precisar)
+const LEAD_API_CONFIG = {
+  url: "https://sua-api.com/api/leads",
+  token: "SEU_LEAD_API_TOKEN",
+};
+
 /**
- * Retorna a URL e o token da API de leads (CONFIG.leadApi ou variáveis de ambiente em build)
+ * Retorna a URL e o token da API de leads
  */
 function getLeadApiConfig() {
-  if (typeof CONFIG !== "undefined" && CONFIG.leadApi) {
-    return { url: CONFIG.leadApi.url, token: CONFIG.leadApi.token };
-  }
-  if (typeof process !== "undefined" && process.env) {
-    return {
-      url: process.env.LEAD_API_URL || process.env.API_URL,
-      token: process.env.LEAD_API_TOKEN || process.env.API_TOKEN,
-    };
-  }
-  return { url: "", token: "" };
+  return {
+    url: LEAD_API_CONFIG.url,
+    token: LEAD_API_CONFIG.token,
+  };
 }
 
 /**
@@ -30,7 +30,7 @@ async function atualizarUserType(emailOuPhone, novoUserType) {
   const { url: API_URL, token: API_TOKEN } = getLeadApiConfig();
   if (!API_URL || !API_TOKEN) {
     throw new Error(
-      "API de leads não configurada. Defina CONFIG.leadApi em config.js",
+      "API de leads não configurada. Edite LEAD_API_CONFIG em scripts/question-dialog.js"
     );
   }
 
@@ -134,7 +134,7 @@ function saveUserTypeToLocalStorage(contact, contactType, userType) {
   } catch (e) {
     console.warn(
       "Não foi possível salvar os dados do usuário no localStorage:",
-      e,
+      e
     );
   }
 }
@@ -235,7 +235,7 @@ function initQuestionDialog() {
       hideQuestionError();
 
       const selectedOption = document.querySelector(
-        'input[name="userType"]:checked',
+        'input[name="userType"]:checked'
       );
       const contactInfo = getContactFromLocalStorage();
 
@@ -248,7 +248,7 @@ function initQuestionDialog() {
       // Valida se existe email ou telefone no localStorage
       if (!contactInfo.contact) {
         alert(
-          "Não foi possível encontrar seus dados de contato. Por favor, volte e preencha o formulário novamente.",
+          "Não foi possível encontrar seus dados de contato. Por favor, volte e preencha o formulário novamente."
         );
         return;
       }
@@ -291,7 +291,7 @@ function initQuestionDialog() {
       saveUserTypeToLocalStorage(
         contactInfo.contact,
         contactInfo.type,
-        userType,
+        userType
       );
 
       // Fecha o dialog

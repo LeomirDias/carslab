@@ -1,7 +1,7 @@
 {
   "scripts": {
     "generate-config": "node scripts/generate-config.js",
-    "build": "node scripts/generate-config.js"
+    "build": "echo Build complete"
   },
   "dependencies": {
     "aos": "^2.3.4",
