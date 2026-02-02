@@ -141,7 +141,7 @@
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
       n.queue = []; t = b.createElement(e); t.async = !0;
@@ -150,7 +150,11 @@
     }(window, document, 'script',
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1694686078168229');
-    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Obrigado por baixar o checklist!',
+      content_category: 'Estética automotiva',
+      content_type: 'offer'
+    });
   </script>
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=1694686078168229&ev=PageView&noscript=1" /></noscript>
@@ -314,13 +318,8 @@
 
         </div>
 
-        <!-- Botão de CTA -->
-        <div class="w-full flex items-center justify-center">
-          <div data-component="primary-btn" data-text="Continuar para o guia completo"
-            data-link="https://pay.cakto.com.br/37suwm3_747200" data-target="_blank"
-            data-classes="text-lg text-center font-extrabold text-[#272727]/85">
-          </div>
-        </div>
+        <!-- Botão de CTA Checkout (redireciona para Cakto + rastreamento Meta Ads) -->
+        <div id="checkout-cta-button-container"></div>
       </section>
 
       <!-- Seção de Por que este guia funciona -->
@@ -513,6 +512,7 @@
         loadComponent('components/funnel-components/funnel-about-product.html', 'about-product-container'),
         loadComponent('components/funnel-components/funnel-why-it-works.html', 'why-it-works-container'),
         loadComponent('components/funnel-components/funnel-faq.html', 'faq-container'),
+        loadComponent('components/buttons/checkout-cta-button.html', 'checkout-cta-button-container'),
         loadComponent('components/footer.html', 'footer-container')
       ]);
 

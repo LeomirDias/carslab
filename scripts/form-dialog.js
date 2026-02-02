@@ -29,7 +29,7 @@ async function criarLead(dadosLead) {
   const { url: API_URL, token: API_TOKEN } = getLeadApiConfig();
   if (!API_URL || !API_TOKEN) {
     throw new Error(
-      "API de leads não configurada. Defina CONFIG.leadApi em config.js",
+      "API de leads não configurada. Defina CONFIG.leadApi em config.js"
     );
   }
 
@@ -98,10 +98,15 @@ function formatPhone(phone) {
   } else if (numbers.length <= 7) {
     return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
   } else if (numbers.length <= 11) {
-    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(
+      7
+    )}`;
   } else {
     // Limita a 11 dígitos
-    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(
+      7,
+      11
+    )}`;
   }
 }
 
@@ -421,7 +426,7 @@ function initFormDialog(containerId) {
 
       if (!receiveEmail && !receiveWhatsapp) {
         alert(
-          "Por favor, selecione pelo menos uma forma de recebimento (e-mail ou WhatsApp)",
+          "Por favor, selecione pelo menos uma forma de recebimento (e-mail ou WhatsApp)"
         );
         hasError = true;
       }
@@ -448,8 +453,8 @@ function initFormDialog(containerId) {
           receiveEmail && receiveWhatsapp
             ? "both"
             : receiveEmail
-              ? "email"
-              : "phone";
+            ? "email"
+            : "phone";
         const dadosLead = {
           landing_source: "check-lavagem-segura",
           name: standardizeName(fullName),
@@ -471,7 +476,7 @@ function initFormDialog(containerId) {
             ? CONFIG.leadApi.productId
             : null;
         if (productId) {
-          dadosLead.product_id = productId;
+          dadosLead.product_ids = [productId];
         }
 
         const submitBtn = get("submitDialogBtn");
@@ -488,11 +493,11 @@ function initFormDialog(containerId) {
           console.error("Erro ao enviar lead para a API:", error);
           if (error.status === 409) {
             alert(
-              "Já existe um cadastro com este e-mail ou telefone. Utilize outros dados ou acesse seu e-mail/WhatsApp para obter o material.",
+              "Já existe um cadastro com este e-mail ou telefone. Utilize outros dados ou acesse seu e-mail/WhatsApp para obter o material."
             );
           } else {
             alert(
-              "Não foi possível enviar. Verifique sua conexão e tente novamente.",
+              "Não foi possível enviar. Verifique sua conexão e tente novamente."
             );
           }
         }
@@ -503,6 +508,13 @@ function initFormDialog(containerId) {
         }
 
         if (!apiOk) return;
+
+        // Rastreamento de captura de lead no Meta Ads
+        if (typeof fbq === "function") {
+          fbq("track", "Lead", {
+            content_name: "Clique Checklist - Lavagem Segura",
+          });
+        }
 
         closeDialog();
 

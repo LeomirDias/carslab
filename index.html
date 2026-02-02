@@ -4,25 +4,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Guia de estética automotiva profissional." />
-  <meta name="keywords" content="estética automotiva, profissional, técnica, persuasão, infoproduto" />
-  <meta name="author" content="CarsLab | O Segredo do Detalhamento" />
+  <meta name="description"
+    content="Baixe gratuitamente o Check de Lavagem Segura - Guia completo para cuidar da pintura do seu carro." />
+  <meta name="keywords" content="lavagem segura, estética automotiva, cuidado automotivo, PDF gratuito" />
+  <meta name="author" content="CarsLab" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://carslab.com.br/" />
-  <meta property="og:title" content="CarsLab | O Segredo do Detalhamento" />
-  <meta property="og:description" content="Guia de estética automotiva profissional." />
+  <meta property="og:url" content="https://carslab.com.br/check-lavagem-segura.html" />
+  <meta property="og:title" content="Check de Lavagem Segura | PDF Gratuito" />
+  <meta property="og:description"
+    content="Baixe gratuitamente o Checklist de Lavagem Segura - Guia completo para cuidar da pintura do seu carro." />
   <meta property="og:image" content="assets/images/og-image.jpg" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://carslab.com.br/" />
-  <meta property="twitter:title" content="CarsLab | O Segredo do Detalhamento" />
-  <meta property="twitter:description" content="Guia de estética automotiva profissional." />
+  <meta property="twitter:url" content="https://carslab.com.br/check-lavagem-segura.html" />
+  <meta property="twitter:title" content="Check de Lavagem Segura | PDF Gratuito" />
+  <meta property="twitter:description"
+    content="Baixe gratuitamente o Checklist de Lavagem Segura - Guia completo para cuidar da pintura do seu carro." />
   <meta property="twitter:image" content="assets/images/og-image.jpg" />
 
-  <title>CarsLab | O Segredo do Detalhamento</title>
+  <title>CarsLab | Checklist de Lavagem Segura</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/icons/icon.ico" />
@@ -133,17 +136,12 @@
   <!-- Custom CSS for animations and special cases -->
   <link rel="stylesheet" href="styles/input.css" />
 
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-  <meta name="facebook-domain-verification" content="amvawcz0ksfrn32f8sjtuqi70wzsq1" />
-
   <!-- Meta Pixel Code -->
   <script>
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
       n.queue = []; t = b.createElement(e); t.async = !0;
@@ -152,7 +150,11 @@
     }(window, document, 'script',
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1694686078168229');
-    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Checklist de Lavagem Segura',
+      content_category: 'Estética automotiva',
+      content_type: 'product'
+    });
   </script>
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=1694686078168229&ev=PageView&noscript=1" /></noscript>
@@ -160,41 +162,212 @@
 </head>
 
 <body class="bg-[#272727]">
-  <!-- Form Dialog -->
-  <div id="form-dialog-container"></div>
+  <!-- Check Form Dialog -->
+  <div id="check-form-dialog-container"></div>
 
   <!-- Header -->
-  <div id="header-container"></div>
+  <div class="bg-[#272727] p-2 flex items-center justify-center border border-[#272727] shadow-none">
+    <a href="/">
+      <img src="assets/images/cl-logo.png" alt="Logo" class="h-14 w-auto" loading="eager" />
+    </a>
+  </div>
 
-  <!-- Hero Section -->
-  <div id="hero-container"></div>
+  <!-- Main Content Section -->
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section
+      class="bg-[#272727] border border-[#272727] shadow-none flex flex-col items-center justify-center text-center w-full px-4">
+      <!-- Título Principal -->
+      <h1 class="text-2xl font-bold text-primary mb-2">
+        Checklist de Lavagem Segura
+      </h1>
 
-  <!-- About Product Section -->
-  <div id="about-product-container"></div>
+      <!-- Texto Complementar -->
+      <div class="text-white/80 text-sm mb-6">
+        <p>
+          Entenda, de forma simples e prática, o que usar e o que evitar na lavagem do carro para não causar riscos,
+          manchas e perda de brilho com o tempo.
+        </p>
+      </div>
 
-  <!-- Why It Works Section -->
-  <div id="why-it-works-container"></div>
+      <div class="flex flex-col items-center justify-center max-w-xs max-auto mb-6">
+        <img src="assets/images/capa-check-lavagem-segura.png" alt="Check de Lavagem Segura"
+          class="w-full h-auto object-cover mb-4 px-6" loading="lazy">
+        <p class="text-sm text-white/80">Checklist rápido • Evite erros comuns</p>
+      </div>
 
-  <!-- Bonus Section -->
-  <div id="bonus-container"></div>
+      <!-- Botão CTA Checklist (abre o dialog do formulário) -->
+      <div id="checklist-cta-button-container"></div>
+    </section>
 
-  <!-- Course Content Section -->
-  <div id="faq-container"></div>
+    <!-- Seção de Conteúdo Educacional -->
+    <section
+      class="bg-[#272727] shadow-none flex flex-col items-center justify-center text-center w-full px-4 py-8 border border-[#272727] gap-8">
 
+      <div class="flex flex-col items-center justify-center gap-2">
+        <img src="assets/icons/academic-cap.svg" alt="Check" class="w-10 h-10 flex-shrink-0 mt-0.5">
+        <p class="text-sm text-white font-semibold">Conteúdo educacional criado pela CarLab para quem busca
+          cuidar do carro de forma correta e consciente.</p>
+      </div>
+
+      <div class="flex flex-col items-center justify-center gap-2">
+        <img src="assets/icons/play.svg" alt="Check" class="w-10 h-10 flex-shrink-0 mt-0.5">
+        <p class="text-sm text-white font-semibold">Este checklist é o primeiro passo para entender o processo
+          completo de lavagem e detalhamento.</p>
+      </div>
+    </section>
+
+    <!-- Texto de Suporte -->
+    <section
+      class="bg-[#272727] border border-[#272727] shadow-none flex flex-col items-center justify-center text-center w-full px-4 py-8">
+      <!-- Lista de itens do checklist -->
+      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#333333] p-6 rounded-md">
+        <h3 class="text-lg font-bold text-primary mb-2">O que você vai encontrar no checklist </h3>
+        <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Produtos seguros para lavagem externa e interna</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>O que evitar para não riscar a pintura</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Cuidados básicos com interior e acabamento</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Erros comuns que causam danos invisíveis</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col items-center justify-center w-full h-auto mb-6 bg-[#333333] p-6 rounded-md">
+        <h3 class="text-lg font-bold text-primary mb-2">Para quem é / Para quem não é </h3>
+        <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
+          <p class="text-sm text-left font-semibold text-white">Este checklist é para você que:</p>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Quer lavar o carro sem danificar pintura e interior</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Prefere fazer o básico do jeito certo</span>
+          </li>
+          <p class="text-sm text-left font-semibold text-white">Este checklist não é para quem:</p>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/x.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Busca técnicas avançadas ou profissionais</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-left text-white">
+            <img src="assets/icons/x.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            <span>Quer um curso completo</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <div id="footer-container"></div>
+  <!-- Footer Component -->
+  <footer class="bg-[#272727] text-white border-t border-[#353535] h-auto">
+    <div class="container mx-auto max-w-container h-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6 space-y-6">
+
+        <div class="footer__section mb-4 gap-2">
+          <h4 class="text-lg font-bold text-white mb-2">Legal</h4>
+          <ul class="list-none p-0">
+            <li class="mb-sm"><a data-legal-link="privacy-policy" href="#"
+                class="text-white/70 transition-colors duration-150 text-base hover:text-white">Política de
+                Privacidade</a></li>
+            <li class="mb-sm"><a data-legal-link="terms-of-use" href="#"
+                class="text-white/70 transition-colors duration-150 text-base hover:text-white">Termos de
+                Uso</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__section mb-4 gap-2">
+          <h4 class="text-md font-bold text-white">Contato</h4>
+          <p class="text-white/80 text-xs mb-4">Atendimento para dúvidas e suporte ao cliente em dias úteis.</p>
+          <a href="mailto:suportecarslab@gmail.com"
+            class="text-white font-semibold flex items-center gap-2 text-sm mb-2 block hover:underline" target="_blank"
+            rel="noopener"> <img src="assets/icons/email.svg" alt="Email" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            suportecarslab@gmail.com</a>
+          <a href="https://wa.me/5564996775544"
+            class="text-white font-semibold flex items-center gap-2 text-sm mb-2 block hover:underline" target="_blank"
+            rel="noopener"> <img src="assets/icons/whatsapp.svg" alt="WhatsApp" class="w-4 h-4 flex-shrink-0 mt-0.5">
+            Fale com o suporte pelo WhatsApp</a>
+        </div>
+      </div>
+
+
+      <p class="text-white text-xs mb-sm text-center p-6">© 2026 CarsLab. Todos os
+        direitos reservados.</p>
+    </div>
+  </footer>
 
   <!-- JavaScript Libraries -->
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <!-- Config (copie config.example.js para config.js e defina CONFIG.leadApi) -->
+  <script src="config.js"></script>
   <!-- Main Scripts -->
   <script src="scripts/form-dialog.js"></script>
-  <script src="scripts/primary-btn.js"></script>
   <script src="scripts/legal-links.js"></script>
-  <script src="scripts/main.js"></script>
-  <script src="scripts/components.js"></script>
+
+  <!-- Custom Script for this page -->
+  <script>
+    /**
+     * Load component HTML file and insert it into a container
+     */
+    async function loadComponent(componentPath, containerId) {
+      try {
+        const response = await fetch(componentPath);
+        if (!response.ok) {
+          throw new Error(`Failed to load component: ${componentPath}`);
+        }
+
+        const html = await response.text();
+        const container = document.getElementById(containerId);
+
+        if (container) {
+          container.innerHTML = html;
+        } else {
+          console.error(`Container with ID "${containerId}" not found`);
+        }
+      } catch (error) {
+        console.error(`Error loading component:`, error);
+      }
+    }
+
+    /**
+     * Initialize page when DOM is ready
+     */
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Load components
+      await Promise.all([
+        loadComponent('components/forms/check-form-dialog.html', 'check-form-dialog-container'),
+        loadComponent('components/buttons/checklist-cta-button.html', 'checklist-cta-button-container'),
+      ]);
+
+      // Inicializa o form dialog do funnel (container garante vínculo com o form carregado)
+      if (typeof initFormDialog === 'function') {
+        initFormDialog('check-form-dialog-container');
+      }
+
+      // Initialize legal links
+      if (typeof updateLegalLinks === 'function') {
+        updateLegalLinks();
+      }
+
+      // Abre o dialog do funnel (mesmo container usado no init)
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn && typeof openFormDialog === 'function') {
+        downloadBtn.addEventListener('click', () => {
+          openFormDialog('check-form-dialog-container');
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
