@@ -5,9 +5,9 @@
 
 // API de leads (edite aqui os valores; não é mais necessário config.js)
 const LEAD_API_CONFIG = {
-  url: "https://sua-api.com/api/leads",
-  token: "SEU_LEAD_API_TOKEN",
-  productId: "ff3fdf61-e88f-43b5-982a-32d50f112414",
+  url: "https://gpmd-sys.vercel.app/api/leads",
+  token: "RfrJaqci2Ju6zkPup3tF",
+  productId: "6e4c0f0a-933d-4dee-877e-cf4b5713b7ac",
 };
 
 /**
