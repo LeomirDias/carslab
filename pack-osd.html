@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Conheça o pack de guias O Segredo do Detalhamento e aprenda a cuidar do seu carro com segurança e economia." />
+  <meta name="keywords" content="estética automotiva, detalhamento, e-book, curso, checklist" />
+  <meta name="author" content="CarsLab" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://osegredododetalhamento.com.br/pack-osd.html" />
+  <meta property="og:title" content="O Segredo do Detalhamento | Pack de Guias" />
+  <meta property="og:description"
+    content="Conheça o pack de guias O Segredo do Detalhamento e aprenda a cuidar do seu carro com segurança e economia." />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://osegredododetalhamento.com.br/pack-osd.html" />
+  <meta property="twitter:title" content="O Segredo do Detalhamento | Pack de Guias" />
+  <meta property="twitter:description"
+    content="Conheça o pack de guias O Segredo do Detalhamento e aprenda a cuidar do seu carro com segurança e economia." />
+  <meta property="twitter:image" content="assets/images/og-image.jpg" />
+
+  <title>O Segredo do Detalhamento | Pack de Guias</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/icons/icon.ico" />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#ffde59',
+              dark: '#E55A2B',
+              light: '#FF8C5A',
+            },
+            secondary: {
+              DEFAULT: '#004E89',
+              dark: '#003D6B',
+            },
+            accent: '#FFD23F',
+            text: {
+              DEFAULT: '#333333',
+              light: '#666666',
+              lighter: '#999999',
+            },
+            bg: {
+              DEFAULT: '#FFFFFF',
+              light: '#F8F9FA',
+              dark: '#1A1A1A',
+            },
+            success: '#28A745',
+            error: '#DC3545',
+            warning: '#FFC107',
+            info: '#17A2B8',
+          },
+          fontFamily: {
+            primary: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            heading: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+          fontSize: {
+            xs: '0.75rem',    // 12px
+            sm: '0.875rem',   // 14px
+            base: '1rem',     // 16px
+            lg: '1.125rem',   // 18px
+            xl: '1.25rem',    // 20px
+            '2xl': '1.5rem',  // 24px
+            '3xl': '1.875rem', // 30px
+            '4xl': '2.25rem',  // 36px
+            '5xl': '3rem',     // 48px
+            '6xl': '3.75rem',  // 60px
+          },
+          spacing: {
+            xs: '0.25rem',   // 4px
+            sm: '0.5rem',     // 8px
+            md: '1rem',      // 16px
+            lg: '1.5rem',    // 24px
+            xl: '2rem',      // 32px
+            '2xl': '3rem',   // 48px
+            '3xl': '4rem',   // 64px
+            '4xl': '6rem',   // 96px
+            '5xl': '8rem',   // 128px
+          },
+          borderRadius: {
+            none: '0',
+            sm: '0.25rem',   // 4px
+            md: '0.5rem',    // 8px
+            lg: '0.75rem',   // 12px
+            xl: '1rem',      // 16px
+            '2xl': '1.5rem', // 24px
+          },
+          boxShadow: {
+            sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+            md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          },
+          zIndex: {
+            dropdown: '1000',
+            sticky: '1020',
+            fixed: '1030',
+            'modal-backdrop': '1040',
+            modal: '1050',
+            popover: '1060',
+            tooltip: '1070',
+          },
+          maxWidth: {
+            container: '1200px',
+            'container-wide': '1400px',
+            'container-narrow': '900px',
+          },
+          transitionDuration: {
+            fast: '150ms',
+            base: '300ms',
+            slow: '500ms',
+          },
+          screens: {
+            'xs': '480px',
+            'sm': '576px',
+            'md': '768px',
+            'lg': '992px',
+            'xl': '1200px',
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Custom CSS for animations and special cases -->
+  <link rel="stylesheet" href="styles/input.css" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1694686078168229');
+    fbq('track', 'ViewContent', {
+      content_name: 'Obrigado por baixar o checklist!',
+      content_category: 'Estética automotiva',
+      content_type: 'offer'
+    });
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1694686078168229&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+
+<body class="bg-[#272727]">
+  <!-- Question Dialog  -->
+  <div id="question-dialog-container" class="w-full h-full"></div>
+
+  <!-- Header -->
+  <div class="bg-[#272727] border-b border-[#353535] p-2 flex items-center justify-between px-4 shadow-none">
+    <img src="assets/images/cl-logo.png" alt="Logo" class="h-14 w-auto" loading="eager" />
+    <button class="text-center text-xs text-[#272727]/80 bg-primary text-[#272727] py-2 px-4 rounded-sm font-bold text-lg 
+      transition-all duration-30">
+      <a href="https://wa.me/5564992834346">Suporte CarsLab</a>
+    </button>
+  </div>
+
+  <!-- Main Content Section -->
+  <main class="min-h-screen flex flex-col items-center justify-center gap-10 bg-[#272727]">
+
+    <!-- Seção de Oferta do Guia -->
+    <section class="section flex flex-col items-center justify-center w-full h-auto">
+
+      <!-- Seção de Hero -->
+      <section class="shadow-none flex flex-col items-center justify-center w-full h-auto mb-4">
+
+        <!-- Conteúdo do hero -->
+        <div class="flex flex-col items-center justify-center h-auto w-full">
+
+          <div class="text-center px-6 py-10">
+            <h1 class="text-5xl font-bold text-white">
+              Pare de <span class="text-primary">destruir</span> a pintura do seu carro!
+            </h1>
+          </div>
+
+          <!-- Texto do hero -->
+          <div class="flex flex-col items-center justify-center text-center px-6 gap-2 mb-8">
+            <p class="text-xl text-white/90">
+              Conheça o pack de guias <strong>"O Segredo do Detalhamento"</strong> e aprenda a cuidar do seu carro com
+              segurança e economia.
+            </p>
+            <!-- Descrição do hero -->
+            <p class="text-sm text-white/80 font-normal w-full">
+              Um pack com 3 guias completos, práticos e diretos que mostram os processos, técnicas e escolhas corretas
+              de produtos usados na
+              lavagem
+              detalhada profissional
+              — para cuidar do seu veículo com segurança e economia.
+            </p>
+          </div>
+
+          <!-- Lista de benefícios do hero -->
+          <div class="flex flex-col items-center justify-center text-center py-8 px-6 gap-2 text-white">
+            <!-- Título da lista de benefícios -->
+            <h2 class="text-md font-semibold text-center text-primary">Você já passou por alguma dessas situações?
+            </h2>
+            <!-- Lista de benefícios -->
+            <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
+              <li class="flex items-start gap-2 text-sm text-left text-white">
+                <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                <span>Quando olha a pintura no sol, ela está toda <span class="text-primary">arranhada</span>?</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-left text-white">
+                <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                <span>Aquela <span class="text-primary">sujeira</span> da caixa de roda nunca sai com
+                  facilidade?</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-left text-white">
+                <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                <span>Os plásticos externos estão <span class="text-primary">ressecados</span> e sem cor?</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-left text-white">
+                <img src="assets/icons/arrow-right.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                <span>Fica perdido com tanta <span class="text-primary">informação</span> diferente na
+                  internet?</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- imagem do hero -->
+        <div class="w-full max-w-4xl">
+          <h2 class="text-sm mb-4 font-semibold text-center text-white">É exatamente isso que estes guias resolvem...
+          </h2>
+          <img src="assets/images/img-hero.png" alt="Thumbnail do vídeo" class="w-full h-full object-cover"
+            loading="lazy">
+      </section>
+
+      <!-- Seção de Conteúdo do Guia -->
+      <section class="shadow-none flex flex-col items-center justify-center w-full h-auto mb-16">
+        <div class="flex flex-col px-6 py-4 items-center justify-center h-auto text-center w-full">
+
+          <div class="flex flex-col items-center justify-center h-auto text-center w-full mb-6">
+            <h3 class="text-lg font-bold text-primary">O que você vai aprender nestes guias:</h3>
+            <p class="text-sm font-semibold text-white/80">Conteúdo prático, direto e aplicável no dia a dia.</p>
+          </div>
+
+          <ul class="flex flex-col items-start gap-2 w-full max-w-2xl">
+            <li class="flex items-start gap-2 text-sm text-left text-white">
+              <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+              <span>Saber quais produtos realmente valem a pena comprar</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-left text-white">
+              <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+              <span>Utilizar os produtos com segurança</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-left text-white">
+              <img src="assets/icons/check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-0.5">
+              <span>Aplicar cada etapa da lavagem sem danificar o carro</span>
+            </li>
+          </ul>
+
+          <p class="text-white/80 font-semibold italic py-6">
+            Tudo explicado de forma simples, mesmo para quem nunca lavou o carro de forma detalhada.
+          </p>
+
+          <p class="text-white text-md">
+            Você entenderá os processos usados por profissionais da estética automotiva para alcançar um
+            acabamento limpo, protegido e visualmente renovado — sem desperdício e sem achismos.
+          </p>
+
+        </div>
+
+        <!-- Botão de CTA Checkout (redireciona para Cakto + rastreamento Meta Ads) -->
+        <div id="checkout-cta-button-container" class="w-full max-w-2xl p-6"></div>
+      </section>
+
+      <!-- Seção de Por que este guia funciona -->
+      <section class="shadow-none flex flex-col items-center justify-center w-full h-auto">
+
+        <div class="flex flex-col items-center justify-center h-auto w-full gap-4">
+
+          <div class="flex flex-col items-center justify-center h-auto text-center w-full">
+            <h2 class="text-2xl font-extrabold text-primary">
+              Por que estes guias funcionam...
+            </h2>
+            <p class="text-sm italic text-[#272727]/80">Porque você entende o porquê de cada etapa — não apenas
+              o que fazer.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+
+            <div
+              class="bg-[#272727] border border-primary p-xl shadow-sm rounded-xl relative transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:shadow-lg">
+              <div class="text-3xl font-extrabold text-primary opacity-20 absolute top-md right-md leading-none">01
+              </div>
+              <h3 class="text-xl font-bold mb-md text-primary relative z-10">Começa pela base certa</h3>
+              <p class="text-[#ffffff]">
+                Você aprende a iniciar pela limpeza de rodas e caixas de roda, entendendo produtos, ferramentas e
+                erros a evitar.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#272727] border border-primary p-xl shadow-sm rounded-xl relative transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:shadow-lg">
+              <div class="text-3xl font-extrabold text-primary opacity-20 absolute top-md right-md leading-none">02
+              </div>
+              <h3 class="text-xl font-bold mb-md text-primary relative z-10">Avança de forma lógica</h3>
+              <p class="text-[#ffffff]">
+                Em seguida, o guia mostra como lavar a pintura e tratar os plásticos externos,
+                sempre explicando o motivo de cada escolha para evitar danos e desperdício.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#272727] border border-primary p-xl shadow-sm rounded-xl relative transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:shadow-lg">
+              <div class="text-3xl font-extrabold text-primary opacity-20 absolute top-md right-md leading-none">03
+              </div>
+              <h3 class="text-xl font-bold mb-md text-primary relative z-10">Finaliza com o <br> acabamento correto
+              </h3>
+              <p class="text-[#ffffff]">
+                O processo termina com o acabamento final, unindo proteção e visual renovado.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#272727] border border-primary p-xl shadow-sm rounded-xl relative transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:shadow-lg">
+              <div class="text-3xl font-extrabold text-primary opacity-20 absolute top-md right-md leading-none">04
+              </div>
+              <h3 class="text-xl font-bold mb-md text-primary relative z-10">Especialização em lavagem interna
+              </h3>
+              <p class="text-[#ffffff]">
+                Com o o guia complementar você aprendende de forma mais profunda os processos de lavagem interna de
+                bancos e estofados.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#272727] border border-primary p-xl shadow-sm rounded-xl relative transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:shadow-lg">
+              <div class="text-3xl font-extrabold text-primary opacity-20 absolute top-md right-md leading-none">05
+              </div>
+              <h3 class="text-xl font-bold mb-md text-primary relative z-10">Do hobby ao profissional
+              </h3>
+              <p class="text-[#ffffff]">
+                O segundo guia complementar te mostra como utilizar seu conhecimnto para gerar renda extra ou mudar de
+                profissão.
+              </p>
+            </div>
+
+
+          </div>
+
+          <p class="text-lg font-semibold italic text-[#272727]/80 text-center px-6">
+            Assim, você entende o motivo de cada etapa e toma decisões mais seguras na hora de cuidar do seu veículo.
+          </p>
+
+      </section>
+
+
+      <!-- FAQ Section Component -->
+      <section class="shadow-none flex flex-col items-center justify-center w-full h-auto px-6 gap-6 mb-16">
+
+        <div class="flex flex-col items-center justify-center h-auto text-center w-full">
+          <h2 class="text-2xl font-extrabold text-primary">
+            Compra segura e acesso imediato
+          </h2>
+          <p class="text-lg font-semibold text-white/80 text-center px-6">
+            Tudo claro, simples e sem letras miúdas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
+
+          <div
+            class="bg-[#353535] p-xl rounded-lg transition-all duration-300 border border-[#404040] hover:border-primary/50 hover:shadow-lg">
+            <h3 class="text-lg font-bold mb-md text-primary">
+              📩 Acesso ao produto
+            </h3>
+            <p class="text-[#ffffff] text-sm">
+              Você receberá o guia por e-mail ou WhatsApp imediatamente após a confirmação do pagamento.
+            </p>
+          </div>
+
+          <div
+            class="bg-[#353535] p-xl rounded-lg transition-all duration-300 border border-[#404040] hover:border-primary/50 hover:shadow-lg">
+            <h3 class="text-lg font-bold mb-md text-primary">
+              🔁 Existe mensalidade?
+            </h3>
+            <p class="text-[#ffffff] text-sm">
+              Não. O guia é seu para sempre, sem qualquer pagamento recorrente.
+            </p>
+          </div>
+
+          <div
+            class="bg-[#353535] p-xl rounded-lg transition-all duration-300 border border-[#404040] hover:border-primary/50 hover:shadow-lg">
+            <h3 class="text-lg font-bold mb-md text-primary">
+              💬 Suporte
+            </h3>
+            <p class="text-[#ffffff] text-sm">
+              Disponibilizamos um canal oficial para atendimento, dúvidas e suporte, além do nosso perfil oficial
+              no
+              Instagram.
+            </p>
+          </div>
+
+          <div
+            class="bg-[#353535] p-xl rounded-lg transition-all duration-300 border border-[#404040] hover:border-primary/50 hover:shadow-lg">
+            <h3 class="text-lg font-bold mb-md text-primary">
+              🔒 Compra segura
+            </h3>
+            <p class="text-[#ffffff] text-sm">
+              Pagamento 100% seguro e garantia de 7 dias para arrependimento, conforme o Código de Defesa do
+              Consumidor.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- JavaScript Libraries -->
+  <!-- Main Scripts -->
+  <script src="scripts/question-dialog.js"></script>
+  <script src="scripts/components.js"></script>
+  <script src="scripts/primary-btn.js"></script>
+  <script src="scripts/legal-links.js"></script>
+
+  <!-- Custom Script for this page -->
+  <script>
+    /**
+     * Load component HTML file and insert it into a container
+     */
+    async function loadComponent(componentPath, containerId) {
+      try {
+        const response = await fetch(componentPath);
+        if (!response.ok) {
+          throw new Error(`Failed to load component: ${componentPath}`);
+        }
+
+        const html = await response.text();
+        const container = document.getElementById(containerId);
+
+        if (container) {
+          container.innerHTML = html;
+          // console.log(`Component loaded successfully: ${componentPath} into ${containerId}`);
+
+          // Execute any scripts within the component
+          const scripts = container.querySelectorAll('script');
+          scripts.forEach(oldScript => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach(attr => {
+              newScript.setAttribute(attr.name, attr.value);
+            });
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
+        } else {
+          console.error(`Container with ID "${containerId}" not found`);
+        }
+      } catch (error) {
+        console.error(`Error loading component:`, error);
+      }
+    }
+
+    /**
+     * Initialize page when DOM is ready
+     */
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Load components
+      await Promise.all([
+        loadComponent('components/funnel-components/question-dialog.html', 'question-dialog-container'),
+        loadComponent('components/funnel-components/funnel-hero.html', 'hero-container'),
+        loadComponent('components/funnel-components/funnel-about-product.html', 'about-product-container'),
+        loadComponent('components/funnel-components/funnel-why-it-works.html', 'why-it-works-container'),
+        loadComponent('components/funnel-components/funnel-faq.html', 'faq-container'),
+        loadComponent('components/buttons/checkout-cta-button.html', 'checkout-cta-button-container'),
+        loadComponent('components/forms/checkout-form-dialog.html', 'checkout-form-dialog-container'),
+        loadComponent('components/footer.html', 'footer-container')
+      ]);
+
+      // Initialize components after they're loaded
+      if (typeof initComponents === 'function') {
+        initComponents();
+      }
+
+      // Initialize primary buttons
+      if (typeof initPrimaryButtons === 'function') {
+        initPrimaryButtons();
+      }
+
+      // Initialize question dialog
+      if (typeof initQuestionDialog === 'function') {
+        initQuestionDialog();
+      }
+
+      // Abre o dialog automaticamente após um pequeno delay
+      setTimeout(() => {
+        if (typeof openQuestionDialog === 'function') {
+          openQuestionDialog();
+        }
+      }, 500);
+
+      // Initialize legal links
+      if (typeof updateLegalLinks === 'function') {
+        updateLegalLinks();
+      }
+
+      // Initialize checkout form dialog (abre ao clicar no CTA e redireciona ao checkout ao final)
+      if (typeof initCheckoutFormDialog === 'function') {
+        initCheckoutFormDialog();
+      }
+    });
+  </script>
+</body>
+
+</html>
