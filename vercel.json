@@ -20,6 +20,10 @@
     {
       "source": "/obrigado",
       "destination": "/obrigado.html"
+    },
+    {
+      "source": "/pack-osd",
+      "destination": "/pack-osd.html"
     }
   ],
   "headers": [
